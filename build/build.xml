@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     9 Nov 2014 1:20:54 pm                                                        
+
+     Resource Scheduler    
+     
+     Demonstrates a resource scheduling application. Utilising Threading to allow variable numbers of resources
+     to be utilised.
+                   
+     taffy                                                                
+     ====================================================================== -->
+<project name="Resource Scheduler" default="default">
+	<description>
+            Demonstrates a resource scheduling application. Utilising Threading to allow variable numbers of resources
+    	to be utilised.
+    </description>
+
+	<property name="base" value="..">
+	</property>
+	<property name="dist" value="${base}/dist">
+	</property>
+	<property name="classes" value="${base}/dist/classes">
+	</property>
+	<property name="main-class" value="co.uk.brecknock.test.SchedulerHarness">
+	</property>
+
+
+	<!-- ================================= 
+          target: default              
+         ================================= -->
+	<target name="default" depends="compile" description="build the project">
+
+			
+		<jar destfile="${dist}/resourceScheduler.jar" 
+	
+ 	       basedir="${classes}"
+ 	  	   includes="**/*"  >
+	           <manifest>
+	                <attribute name="Main-Class" value="${main-class}"/>
+	            </manifest>
+        </jar>
+	</target>
+
+	<target name="compile" depends ="createDirs">
+		<javac srcdir="${base}/src" destdir="${classes}" includes="**/*.java" >
+
+		</javac>
+
+	</target>
+
+	<target name="createDirs">
+		<mkdir dir="${dist}"/>
+		<mkdir dir="${classes}"/>
+	</target>
+</project>
